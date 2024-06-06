@@ -7,10 +7,9 @@ t, p = map(int, input().split())
 # print(t, p)
 
 x_p = 0
-
 for i in n_list:
     if i-t > 0:
-        if (i-t)//p == 0:
+        if (i-t)%p == 0:
             x_p+=(i-t)//p
         else:
             x_p+=(i-t)//p+1
