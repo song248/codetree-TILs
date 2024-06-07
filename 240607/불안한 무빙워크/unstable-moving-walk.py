@@ -26,7 +26,4 @@ while True:
         belt[0][1] += 1
         belt[0][0] -= 1
     cnt += 1
-
-    if cnt > 10:
-        break
 print(cnt)
