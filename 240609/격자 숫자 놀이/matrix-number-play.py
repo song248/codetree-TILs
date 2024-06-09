@@ -62,7 +62,7 @@ def cal_col(A):
 sec = 0
 while True:
     # 조건 확인 K
-    if r <= len(A[0]) and c <= len(A):
+    if c <= len(A[0]) and r <= len(A):
         if A[r-1][c-1] == k:
             print(sec)
             break
