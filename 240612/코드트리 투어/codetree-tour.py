@@ -74,7 +74,7 @@ trip_in = []    # 여행상품이 만들어진적 있는지
 trip_out = []    # 여행상품 취소 여부
 S = 0    # 초기 출발지
 hq = []
-MAX_ID = 30000
+MAX_ID = 30005
 trip_in = [False] * MAX_ID # 여행상품 생성 전적 상태 배열 초기화
 trip_out = [False] * MAX_ID  # 여행상품 취소 상태 배열 초기화
 # global trip_in, trip_out
