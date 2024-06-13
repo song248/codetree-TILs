@@ -54,6 +54,7 @@ def chk_move(idx, d):
                 continue
             if c[i] > nc[x]+w[x]-1 or nc[x] > c[i]+w[i]-1:
                 continue
+            # 여기까지 오면 안겹쳐서 이동에 포함시키는거
             visited[i] = True
             dq.append(i)
     dmg[idx] = 0
