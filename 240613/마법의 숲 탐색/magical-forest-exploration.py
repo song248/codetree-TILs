@@ -42,8 +42,8 @@ def fairy_dfs(y, x):
     while dq:
         c_y, c_x = dq.popleft()
         for i in range(4):
-            ny = c_y+dy[0]
-            nx = c_x+dx[0]
+            ny = c_y+dy[i]
+            nx = c_x+dx[i]
             # 골렘 내부 혹은 출구가 이어진 다른 골렘
             if inRange(ny, nx) and not visited[ny][nx] and \
             (forest[ny][nx] == forest[c_y][c_x] or (forest[ny][nx] != 0 and golem_exit[c_y][c_x])):
