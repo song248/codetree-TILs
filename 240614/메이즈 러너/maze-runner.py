@@ -1,10 +1,10 @@
 N,M,K = map(int, input().split())
-parti = [tuple(map(int, input().split())) for _ in range(M)]
-parti = [(-1, -1)] + parti
-exit = (map(int, input().split()))
 maze = [[0]*(N+1) for _ in range(N+1)]
 for i in range(1, N+1):
     maze[i] = [0] + list(map(int, input().split()))
+parti = [tuple(map(int, input().split())) for _ in range(M)]
+parti = [(-1, -1)] + parti
+exit = tuple(map(int, input().split()))
 ans = 0
 sx, sy, sq_size = 0, 0, 0
 
@@ -19,10 +19,10 @@ def move():
         # 상하 움직임 먼저 고려
         if ty != exit[1]:
             nx, ny = tx, ty
-            if ny > exit[1]:
-                ny -= 1
-            else:
+            if ny < exit[1]:
                 ny += 1
+            else:
+                ny -= 1
             if maze[nx][ny] == 0:
                 parti[i] = (nx, ny)
                 ans += 1
@@ -30,10 +30,10 @@ def move():
                 continue
         if tx != exit[0]:
             nx, ny = tx, ty
-            if nx > exit[0]:
-                nx -= 1
-            else:
+            if nx < exit[0]:
                 nx += 1
+            else:
+                nx -= 1
             if maze[nx][ny] == 0:
                 parti[i] = (nx, ny)
                 ans += 1
