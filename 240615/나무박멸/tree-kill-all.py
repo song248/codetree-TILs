@@ -17,13 +17,14 @@ def tree_grown():
     for i in range(1, n + 1):
         for j in range(1, n + 1):
             t_cnt = 0
-            if board[i][j] > 0:
-                for o in range(4):
-                    nx = i + dx[o]
-                    ny = j + dy[o]
-                    if 1 <= nx <= n and 1 <= ny <= n:
-                        if board[nx][ny] > 0:
-                            t_cnt += 1
+            if board[i][j] <= 0:
+                continue
+            for o in range(4):
+                nx = i + dx[o]
+                ny = j + dy[o]
+                if 1 <= nx <= n and 1 <= ny <= n:
+                    if board[nx][ny] > 0:
+                        t_cnt += 1
             board[i][j] += t_cnt
 
 def breeding():
