@@ -1,23 +1,11 @@
-# n, m, k, c = map(int, input().split())
-# board = [[0]*(n+1)]
-# for _ in range(n):
-#     board.append([0] + list(map(int, input().split())))
-# # 나무 성장 정보
-# grown = [[0]*(n+1) for _ in range(n+1)]
-# # 제초제 정보
-# t_killer = [[0]*(n+1) for _ in range(n+1)]
-
-
-n, m, k, c = 5, 1, 2, 1
-board = [[0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0],
-         [0, 0, 30, 23, 0, 0],
-         [0, 0, 0, -1, 0, 0],
-         [0, 0, 0, 17, 46, 77],
-         [0, 0, 0, 0, 12, 0]]
-grown = [[0] * (n + 1) for _ in range(n + 1)]
+n, m, k, c = map(int, input().split())
+board = [[0]*(n+1)]
+for _ in range(n):
+    board.append([0] + list(map(int, input().split())))
+# 나무 성장 정보
+grown = [[0]*(n+1) for _ in range(n+1)]
 # 제초제 정보
-t_killer = [[0] * (n + 1) for _ in range(n + 1)]
+t_killer = [[0]*(n+1) for _ in range(n+1)]
 
 ans = 0
 dx = [-1, 0, 1, 0]
