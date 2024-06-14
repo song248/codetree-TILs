@@ -8,6 +8,8 @@ exit = tuple(map(int, input().split()))
 ans = 0
 sx, sy, sq_size = 0, 0, 0
 
+tmp_maze = [[0] * (N+1) for _ in range(N+1)]
+
 # 참가자 이동
 # 출구까지 거리가 가까워지면 
 def move():
@@ -16,6 +18,16 @@ def move():
         if parti[i] == exit:
             continue
         tx, ty = parti[i][0], parti[i][1]
+        if tx != exit[0]:
+            nx, ny = tx, ty
+            if nx < exit[0]:
+                nx += 1
+            else:
+                nx -= 1
+            if maze[nx][ny] == 0:
+                parti[i] = (nx, ny)
+                ans += 1
+                continue
         # 상하 움직임 먼저 고려
         if ty != exit[1]:
             nx, ny = tx, ty
@@ -28,16 +40,7 @@ def move():
                 ans += 1
                 # 한번에 한칸만 이동
                 continue
-        if tx != exit[0]:
-            nx, ny = tx, ty
-            if nx < exit[0]:
-                nx += 1
-            else:
-                nx -= 1
-            if maze[nx][ny] == 0:
-                parti[i] = (nx, ny)
-                ans += 1
-                continue
+        
 
 # 정사각형 잡기
 # 최소 참가자 1명, 탈출구 포함
@@ -74,18 +77,19 @@ def rotate():
             if maze[i][j] != 0:
                 maze[i][j] -= 1
     # 회전 영역 추출 및 회전
-    arr = []
-    for k in range(sx, sx+sq_size):
-        arr.append(maze[k][sy:sy+sq_size])
-    arr = list(map(list, zip(*arr[::-1])))
-    for i in range(sx, sx+sq_size):
-        for j in range(sy, sy+sq_size):
-            maze[i][j] = arr[i-sx][j-sy]
+    for x in range(sx, sx + sq_size):
+        for y in range(sy, sy + sq_size):
+            ox, oy = x-sx, y-sy
+            rx, ry = oy, sq_size-ox-1
+            tmp_maze[rx+sx][ry+sy] = maze[x][y]
+    for x in range(sx, sx + sq_size):
+        for y in range(sy, sy + sq_size):
+            maze[x][y] = tmp_maze[x][y]
 
     # 참가자 회전
     for k in range(1, M+1):
         tx, ty = parti[k]
-        if sx <= tx <= sx+sq_size and sy <= ty <= sy+sq_size:
+        if sx <= tx < sx+sq_size and sy <= ty < sy+sq_size:
             # 회전하려는 위치의 점을 (0,0)으로 옮김
             # 이후 90도 회전 후 값 복원
             # (x, y) -> (y, x+size-1)
@@ -109,5 +113,6 @@ for _ in range(K):
         break
     make_sq()
     rotate()
+    
 print(ans)
 print(exit[0], exit[1])
