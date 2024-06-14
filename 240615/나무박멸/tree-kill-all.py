@@ -42,16 +42,18 @@ def breeding():
             for o in range(4):
                 nx = i + dx[o]
                 ny = j + dy[o]
-                if 1 <= nx <= n and 1 <= ny <= n:
-                    if t_killer[nx][ny] == 0 and board[nx][ny] == 0:
-                        d_cnt += 1
+                if not (1 <= nx <= n and 1 <= ny <= n):
+                    continue
+                if t_killer[nx][ny] == 0 and board[nx][ny] == 0:
+                    d_cnt += 1
             # 번식
             for o in range(4):
                 nx = i + dx[o]
                 ny = j + dy[o]
-                if 1 <= nx <= n and 1 <= ny <= n:
-                    if t_killer[nx][ny] == 0 and board[nx][ny] == 0:
-                        grown[nx][ny] += board[i][j] // d_cnt
+                if not (1 <= nx <= n and 1 <= ny <= n):
+                    continue
+                if t_killer[nx][ny] == 0 and board[nx][ny] == 0:
+                    grown[nx][ny] += board[i][j] // d_cnt
     for i in range(1, n + 1):
         for j in range(1, n + 1):
             board[i][j] += grown[i][j]
@@ -73,9 +75,11 @@ def kill_the_tree():
                 for _ in range(k):
                     nx = nx+dxc[o]
                     ny = ny+dyc[o]
-                    if 1 <= nx <= n and 1 <= ny <= n:
-                        if board[nx][ny] > 0:
-                            k_cnt += board[nx][ny]
+                    if not (1 <= nx <= n and 1 <= ny <= n):
+                        break
+                    if board[nx][ny] <= 0:
+                        break
+                    k_cnt += board[nx][ny]
             if max_kill < k_cnt:
                 max_kill = k_cnt
                 rx, ry = i, j
