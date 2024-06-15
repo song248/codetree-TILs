@@ -90,7 +90,7 @@ def bomb_attack():
 
     for o in range(8):
         nx = (ex+dxs[o]+N)%N
-        ny = (ey+dxy[o]+M)%M
+        ny = (ey+dys[o]+M)%M
 
         if nx == sx and ny == sy:
             contonue
